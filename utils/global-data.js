@@ -4,10 +4,10 @@ export const getGlobalData = () => {
     : 'infobird.in';
   const blogTitle = process.env.BLOG_TITLE
     ? decodeURI(process.env.BLOG_TITLE)
-    : 'The Tech Blog';
+    : 'Sharp notes on gadgets, AI, and the internet.';
   const footerText = process.env.BLOG_FOOTER_TEXT
     ? decodeURI(process.env.BLOG_FOOTER_TEXT)
-    : 'All rights reserved.';
+    : 'infobird.in publishes concise tech analysis for curious readers.';
 
   return {
     name,

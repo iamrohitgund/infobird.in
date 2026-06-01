@@ -14,4 +14,46 @@ h6 {
 
 body {
   font-family: var(--font-secondary);
+  background:
+    linear-gradient(135deg, rgba(20, 184, 166, 0.12), transparent 34rem),
+    linear-gradient(315deg, rgba(245, 158, 11, 0.1), transparent 32rem),
+    #080a0f;
+  color: #e5e7eb;
+}
+
+::selection {
+  background: #67e8f9;
+  color: #020617;
+}
+
+a {
+  text-underline-offset: 0.18em;
+}
+
+.prose {
+  color: #d1d5db;
+}
+
+.prose h2,
+.prose h3 {
+  color: #f9fafb;
+  font-weight: 900;
+}
+
+.prose a {
+  color: #67e8f9;
+  font-weight: 700;
+}
+
+.prose strong {
+  color: #ffffff;
+}
+
+.prose blockquote {
+  border-left-color: #67e8f9;
+  color: #e5e7eb;
+}
+
+.prose hr {
+  border-color: rgba(255, 255, 255, 0.12);
 }

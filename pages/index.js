@@ -3,7 +3,7 @@ import { getPosts } from '../utils/mdx-utils';
 
 import Footer from '../components/Footer';
 import Header from '../components/Header';
-import Layout, { GradientBackground } from '../components/Layout';
+import Layout from '../components/Layout';
 import ArrowIcon from '../components/ArrowIcon';
 import { getGlobalData } from '../utils/global-data';
 import SEO from '../components/SEO';
@@ -13,48 +13,76 @@ export default function Index({ posts, globalData }) {
     <Layout>
       <SEO title={globalData.name} description={globalData.blogTitle} />
       <Header name={globalData.name} />
-      <main className="w-full">
-        <h1 className="text-3xl lg:text-5xl text-center mb-12">
-          {globalData.blogTitle}
-        </h1>
-        <ul className="w-full">
+      <main className="w-full pb-12">
+        <section className="grid gap-8 py-16 md:grid-cols-5 md:items-end">
+          <div className="md:col-span-3">
+            <p className="mb-5 text-sm font-bold uppercase tracking-widest text-cyan-300">
+              technology & more / since the blog era
+            </p>
+            <h1 className="max-w-4xl text-5xl font-black leading-none text-white md:text-7xl">
+              A sharper signal for gadgets, AI, and internet culture.
+            </h1>
+          </div>
+          <div className="md:col-span-2">
+            <p className="text-xl leading-8 text-gray-300">
+              {globalData.blogTitle}
+            </p>
+          </div>
+        </section>
+
+        <section className="mb-10 grid gap-4 border-y border-white border-opacity-10 py-5 text-sm font-semibold uppercase tracking-widest text-gray-500 sm:grid-cols-3">
+          <span>weekly reads</span>
+          <span>hands-on context</span>
+          <span>no hype fog</span>
+        </section>
+
+        <section id="latest" className="w-full">
+          <div className="mb-6 flex items-center justify-between">
+            <h2 className="text-2xl font-black text-white">Latest</h2>
+            <span className="text-sm font-semibold text-gray-500">
+              {posts.length} posts
+            </span>
+          </div>
+          <ul className="grid w-full gap-5">
           {posts.map((post) => (
             <li
               key={post.filePath}
-              className="md:first:rounded-t-lg md:last:rounded-b-lg backdrop-blur-lg bg-white dark:bg-black dark:bg-opacity-30 bg-opacity-10 hover:bg-opacity-20 dark:hover:bg-opacity-50 transition border border-gray-800 dark:border-white border-opacity-10 dark:border-opacity-10 border-b-0 last:border-b hover:border-b hovered-sibling:border-t-0"
+              className="group border border-white border-opacity-10 bg-white bg-opacity-5 transition hover:border-cyan-300 hover:border-opacity-60 hover:bg-opacity-10"
             >
               <Link
                 as={`/posts/${post.filePath.replace(/\.mdx?$/, '')}`}
                 href={`/posts/[slug]`}
               >
-                <a className="py-6 lg:py-10 px-6 lg:px-16 block focus:outline-none focus:ring-4">
-                  {post.data.date && (
-                    <p className="uppercase mb-3 font-bold opacity-60">
-                      {post.data.date}
-                    </p>
-                  )}
-                  <h2 className="text-2xl md:text-3xl">{post.data.title}</h2>
-                  {post.data.description && (
-                    <p className="mt-3 text-lg opacity-60">
-                      {post.data.description}
-                    </p>
-                  )}
-                  <ArrowIcon className="mt-4" />
+                <a className="grid gap-6 p-6 focus:outline-none focus:ring-4 focus:ring-cyan-300 focus:ring-opacity-30 md:grid-cols-5 md:p-8">
+                  <div className="md:col-span-3">
+                    {post.data.date && (
+                      <p className="mb-4 text-xs font-bold uppercase tracking-widest text-cyan-300">
+                        {post.data.date}
+                      </p>
+                    )}
+                    <h3 className="text-3xl font-black leading-tight text-white md:text-4xl">
+                      {post.data.title}
+                    </h3>
+                  </div>
+                  <div className="flex flex-col justify-between md:col-span-2">
+                    {post.data.description && (
+                      <p className="text-lg leading-7 text-gray-300">
+                        {post.data.description}
+                      </p>
+                    )}
+                    <ArrowIcon
+                      className="mt-6 transition group-hover:translate-x-2"
+                      color="text-cyan-300"
+                    />
+                  </div>
                 </a>
               </Link>
             </li>
           ))}
-        </ul>
+          </ul>
+        </section>
       </main>
       <Footer copyrightText={globalData.footerText} />
-      <GradientBackground
-        variant="large"
-        className="fixed top-20 opacity-40 dark:opacity-60"
-      />
-      <GradientBackground
-        variant="small"
-        className="absolute bottom-0 opacity-20 dark:opacity-10"
-      />
     </Layout>
   );
 }

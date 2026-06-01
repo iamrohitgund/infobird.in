@@ -13,7 +13,7 @@ import ArrowIcon from '../../components/ArrowIcon';
 import CustomLink from '../../components/CustomLink';
 import Footer from '../../components/Footer';
 import Header from '../../components/Header';
-import Layout, { GradientBackground } from '../../components/Layout';
+import Layout from '../../components/Layout';
 import SEO from '../../components/SEO';
 
 // Custom components/renderers to pass to MDX.
@@ -42,58 +42,60 @@ export default function PostPage({
         description={frontMatter.description}
       />
       <Header name={globalData.name} />
-      <article className="px-6 md:px-0">
-        <header>
-          <h1 className="text-3xl md:text-5xl dark:text-white text-center mb-12">
+      <article className="pb-12">
+        <header className="border-y border-white border-opacity-10 py-12 md:py-16">
+          {frontMatter.date && (
+            <p className="mb-6 text-sm font-bold uppercase tracking-widest text-cyan-300">
+              {frontMatter.date}
+            </p>
+          )}
+          <h1 className="max-w-4xl text-5xl font-black leading-none text-white md:text-7xl">
             {frontMatter.title}
           </h1>
           {frontMatter.description && (
-            <p className="text-xl mb-4">{frontMatter.description}</p>
+            <p className="mt-6 max-w-2xl text-xl leading-8 text-gray-300">
+              {frontMatter.description}
+            </p>
           )}
         </header>
-        <main>
-          <article className="prose dark:prose-dark">
+        <main className="mx-auto mt-12 max-w-3xl">
+          <article className="prose prose-invert prose-lg max-w-none">
             <MDXRemote {...source} components={components} />
           </article>
         </main>
-        <div className="grid md:grid-cols-2 lg:-mx-24 mt-12">
+        <div className="mt-16 grid gap-4 md:grid-cols-2">
           {prevPost && (
             <Link href={`/posts/${prevPost.slug}`}>
-              <a className="py-8 px-10 text-center md:text-right first:rounded-t-lg md:first:rounded-tr-none md:first:rounded-l-lg last:rounded-r-lg first last:rounded-b-lg backdrop-blur-lg bg-white dark:bg-black dark:bg-opacity-30 bg-opacity-10 hover:bg-opacity-20 dark:hover:bg-opacity-50 transition border border-gray-800 dark:border-white border-opacity-10 dark:border-opacity-10 last:border-t md:border-r-0 md:last:border-r md:last:rounded-r-none flex flex-col">
-                <p className="uppercase text-gray-500 mb-4 dark:text-white dark:opacity-60">
+              <a className="flex flex-col border border-white border-opacity-10 bg-white bg-opacity-5 px-8 py-7 transition hover:border-cyan-300 hover:border-opacity-60">
+                <p className="mb-4 text-sm font-bold uppercase tracking-widest text-gray-500">
                   Previous
                 </p>
-                <h4 className="text-2xl text-gray-700 mb-6 dark:text-white">
+                <h4 className="mb-6 text-2xl font-black text-white">
                   {prevPost.title}
                 </h4>
-                <ArrowIcon className="transform rotate-180 mx-auto md:mr-0 mt-auto" />
+                <ArrowIcon
+                  className="mt-auto rotate-180 transform"
+                  color="text-cyan-300"
+                />
               </a>
             </Link>
           )}
           {nextPost && (
             <Link href={`/posts/${nextPost.slug}`}>
-              <a className="py-8 px-10 text-center md:text-left md:first:rounded-t-lg last:rounded-b-lg first:rounded-l-lg md:last:rounded-bl-none md:last:rounded-r-lg backdrop-blur-lg bg-white dark:bg-black dark:bg-opacity-30 bg-opacity-10 hover:bg-opacity-20 dark:hover:bg-opacity-50 transition border border-gray-800 dark:border-white border-opacity-10 dark:border-opacity-10 border-t-0 first:border-t first:rounded-t-lg md:border-t border-b-0 last:border-b flex flex-col">
-                <p className="uppercase text-gray-500 mb-4 dark:text-white dark:opacity-60">
+              <a className="flex flex-col border border-white border-opacity-10 bg-white bg-opacity-5 px-8 py-7 transition hover:border-cyan-300 hover:border-opacity-60">
+                <p className="mb-4 text-sm font-bold uppercase tracking-widest text-gray-500">
                   Next
                 </p>
-                <h4 className="text-2xl text-gray-700 mb-6 dark:text-white">
+                <h4 className="mb-6 text-2xl font-black text-white">
                   {nextPost.title}
                 </h4>
-                <ArrowIcon className="mt-auto mx-auto md:ml-0" />
+                <ArrowIcon className="mt-auto" color="text-cyan-300" />
               </a>
             </Link>
           )}
         </div>
       </article>
       <Footer copyrightText={globalData.footerText} />
-      <GradientBackground
-        variant="large"
-        className="absolute -top-32 opacity-30 dark:opacity-50"
-      />
-      <GradientBackground
-        variant="small"
-        className="absolute bottom-0 opacity-20 dark:opacity-10"
-      />
     </Layout>
   );
 }

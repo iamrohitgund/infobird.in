@@ -5,7 +5,10 @@ class MyDocument extends Document {
   render() {
     return (
       <Html lang="en">
-        <Head />
+        <Head>
+          <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+          <meta name="theme-color" content="#080a0f" />
+        </Head>
         <body className="antialiased text-lg leading-base">
           <Main />
           <NextScript />

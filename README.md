@@ -8,7 +8,7 @@ A modern tech blog built with Next.js, Tailwind CSS, and MDX.
 - React
 - Tailwind CSS
 - MDX via `next-mdx-remote`
-- Netlify deployment with `@netlify/plugin-nextjs`
+- Vercel deployment
 
 ## Local Development
 
